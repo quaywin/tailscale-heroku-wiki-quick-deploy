@@ -18,9 +18,6 @@ func main() {
 	if err := startTailscale(context.Background()); err != nil {
 		log.Fatal(err)
 	}
-	if err := startWikiServer(context.Background()); err != nil {
-		log.Fatal(err)
-	}
 	if err := startPublicDummyServer(); err != nil {
 		log.Fatal(err)
 	}
