@@ -9,14 +9,6 @@ ENV TSFILE=tailscale_1.14.0_amd64.tgz
 RUN wget https://pkgs.tailscale.com/stable/${TSFILE} && \
   tar xzf ${TSFILE} --strip-components=1
 
-FROM requarks/wiki:2 as wiki
-WORKDIR /wiki
-ENV DB_TYPE postgres
-ENV DB_SSL 1
-ENV HEROKU 1
-ENV PGSSLMODE no-verify
-COPY . .
-
 # Copy binary to production image
 COPY --from=builder /app/app /app/app
 COPY --from=tailscale /app/tailscaled /app/tailscaled
